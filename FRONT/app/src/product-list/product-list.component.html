@@ -7,6 +7,8 @@
     <ul>
         <div>Type: {{ product.type }}</div>
         <div>Price: {{ product.price }}€</div>
-        <div><button>Show more</button></div>
+        <div>
+            <button [routerLink]="['/products', product.id]">Show more</button>
+        </div>
     </ul>
 </div>
