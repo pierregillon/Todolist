@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductRepository } from './product-repository'
 
 @Component({
     selector: 'product-list',
-    templateUrl: './product-list.component.html'
+    templateUrl: './product-list.component.html',
+    providers:  [ ProductRepository ]
 })
 
 export class ProductListComponent implements OnInit {
-    products = [
-        {name: 'Corsair Gaming Headset', type: 'Video game accessories', price: 59},
-        {name: 'Black chair', type: 'Furniture', price: 120},
-        {name: 'Iphone 12', type: 'Hightech', price: 1020 }
-    ];
+    products: any;
+    constructor(private repository: ProductRepository) { 
+        repository.getAll().then (products => {
+            this.products = products;
+        });
+    }
 
-    constructor() { }
     ngOnInit() { }
 }
