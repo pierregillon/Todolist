@@ -6,7 +6,7 @@ export class TodoListRepository {
     constructor(private http:HttpClient) { }
 
     getAll() : Promise<TodoListItem[]> {
-        return this.http.get<TodoListItem[]>('http://localhost:9999/api/todolist').toPromise();
+        return this.http.get<TodoListItem[]>('https://localhost:44346/api/todolist').toPromise();
     }
 }
 

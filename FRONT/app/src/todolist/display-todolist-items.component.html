@@ -1,1 +1,5 @@
-<div class="todo-list"></div>
+<div class="todo-list">
+    <div *ngFor="let item of items">
+        {{ item.description }}
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoListRepository } from './todolist-repository';
+import { TodoListRepository, TodoListItem } from './todolist-repository';
 
 @Component({
     selector: 'display-todolist-items',
@@ -8,7 +8,11 @@ import { TodoListRepository } from './todolist-repository';
 })
 
 export class DisplayTodoListItemsComponent implements OnInit {
-    constructor() { }
+    items:TodoListItem[]
 
-    ngOnInit() { }
+    constructor(private repository: TodoListRepository) { }
+
+    async ngOnInit() { 
+        this.items = await this.repository.getAll();
+    }
 }
