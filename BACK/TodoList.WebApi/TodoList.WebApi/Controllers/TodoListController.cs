@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using CQRSlite.Queries;
 using Microsoft.AspNetCore.Mvc;
+using TodoList.WebApi.Domain.ListItems;
 
 namespace TodoList.WebApi.Controllers
 {
@@ -7,24 +10,17 @@ namespace TodoList.WebApi.Controllers
     [ApiController]
     public class TodoListController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<TodoListItem>> Get()
+        private readonly IQueryProcessor _queryProcessor;
+
+        public TodoListController(IQueryProcessor queryProcessor)
         {
-            return new[] {
-                new TodoListItem(1, "Send a letter to grand ma"),
-                new TodoListItem(2, "Update my resume")
-            };
+            _queryProcessor = queryProcessor;
         }
-    }
 
-    public class TodoListItem {
-        public int Id { get; }
-        public string Description { get; }
-
-        public TodoListItem(int id, string description)
+        [HttpGet]
+        public async Task<IReadOnlyCollection<TodoListItem>> Get()
         {
-            Id = id;
-            Description = description;
+            return await _queryProcessor.Query(new ListTodoItemsQuery());
         }
     }
 }

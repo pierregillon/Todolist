@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CQRSLite" Version="0.29.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="structuremap" Version="4.7.1" />
+    <PackageReference Include="structuremap.microsoft.dependencyinjection" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
