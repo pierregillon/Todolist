@@ -1,10 +1,12 @@
-﻿namespace TodoList.WebApi.Domain.ListItems {
+﻿using System;
+
+namespace TodoList.WebApi.Domain.ListItems {
     public class TodoListItem
     {
-        public int Id { get; }
+        public Guid Id { get; }
         public string Description { get; }
 
-        public TodoListItem(int id, string description)
+        public TodoListItem(Guid id, string description)
         {
             Id = id;
             Description = description;

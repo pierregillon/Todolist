@@ -16,7 +16,8 @@ namespace TodoList.WebApi.Domain.ListItems {
 
         public async Task<IReadOnlyCollection<TodoListItem>> Handle(ListTodoItemsQuery x)
         {
-            var query = from item in _database.Table<TodoListItemTable>()
+            var query = 
+                from item in _database.Table<TodoListItemTable>()
                 select new TodoListItem(item.Id, item.Description);
 
             return await Task.Run(() => query.ToList());

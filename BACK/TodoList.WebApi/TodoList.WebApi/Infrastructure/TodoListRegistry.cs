@@ -15,6 +15,7 @@ namespace TodoList.WebApi.Infrastructure
             For<StructureMapEventPublisher>().Use<StructureMapEventPublisher>().Singleton();
             For<IEventPublisher>().Use<StructureMapEventPublisher>().Singleton();
             For<IRepository>().Use<Repository>();
+            For<IEventStore>().Use<InMemoryEventStore>();
 
             // Infrastructure
             For<ReadSideDatabase>().Singleton();
