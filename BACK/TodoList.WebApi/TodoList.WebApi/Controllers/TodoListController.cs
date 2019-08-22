@@ -28,7 +28,7 @@ namespace TodoList.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody] string description)
+        public async Task Post([FromForm] string description)
         {
             await _commandSender.Send(new AddThingToDo(description));
         }

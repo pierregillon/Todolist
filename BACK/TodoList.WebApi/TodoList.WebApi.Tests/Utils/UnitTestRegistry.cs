@@ -16,7 +16,7 @@ namespace TodoList.WebApi.Tests.Utils
             // Scans not working in unit tests :( ! Do by hand
             For<IQueryHandler<ListTodoItemsQuery, IReadOnlyCollection<TodoListItem>>>().Use<ListItemsQueryHandler>();
             For<ICommandHandler<AddThingToDo>>().Use<AddThingToDoHandler>();
-            For<IEventHandler<ThingToDoAdded>>().Use(x => x.GetInstance<ReadSideDatabase>());
+            For<IEventHandler<ThingToDoAdded>>().Use<ReadDatabaseFeeder>();
         }
     }
 }
