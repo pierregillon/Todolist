@@ -1,7 +1,7 @@
 ﻿using System;
 using CQRSlite.Events;
 
-namespace TodoList.WebApi.Domain.AddThing {
+namespace TodoList.WebApi.Domain {
     public abstract class BaseEvent : IEvent
     {
         public Guid Id { get; set; }

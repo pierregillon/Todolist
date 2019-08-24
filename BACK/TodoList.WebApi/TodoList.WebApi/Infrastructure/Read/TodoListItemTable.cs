@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TodoList.WebApi.Domain.ListItems {
+namespace TodoList.WebApi.Infrastructure.Read {
     public class TodoListItemTable
     {
         public Guid Id { get; set; }

@@ -3,6 +3,8 @@ using CQRSlite.Domain;
 using CQRSlite.Events;
 using CQRSlite.Queries;
 using StructureMap;
+using TodoList.WebApi.Infrastructure.Read;
+using TodoList.WebApi.Infrastructure.Write;
 
 namespace TodoList.WebApi.Infrastructure
 {

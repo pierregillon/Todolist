@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace TodoList.WebApi.Infrastructure
+namespace TodoList.WebApi.Infrastructure.Read
 {
     public class ReadSideDatabase
     {

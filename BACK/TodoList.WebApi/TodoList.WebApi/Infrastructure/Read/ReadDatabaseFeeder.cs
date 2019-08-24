@@ -3,9 +3,8 @@ using System.Threading.Tasks;
 using CQRSlite.Events;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
-using TodoList.WebApi.Domain.ListItems;
 
-namespace TodoList.WebApi.Infrastructure
+namespace TodoList.WebApi.Infrastructure.Read
 {
     public class ReadDatabaseFeeder : IEventHandler<ThingToDoAdded>, IEventHandler<ThingToDoEdited>
     {

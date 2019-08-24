@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CQRSlite.Events;
 
-namespace TodoList.WebApi.Infrastructure
+namespace TodoList.WebApi.Infrastructure.Write
 {
     public class InMemoryEventStore : IEventStore
     {

@@ -5,6 +5,7 @@ using CQRSlite.Queries;
 using StructureMap;
 using TodoList.WebApi.Domain.ListItems;
 using TodoList.WebApi.Infrastructure;
+using TodoList.WebApi.Infrastructure.Read;
 using TodoList.WebApi.Tests.Utils;
 using Xunit;
 
