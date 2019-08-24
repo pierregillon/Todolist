@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChildren } from '@angular/core';
 import { TodoListItem, TodoListRepository } from './todolist-repository';
 
 @Component({
@@ -10,6 +10,8 @@ import { TodoListItem, TodoListRepository } from './todolist-repository';
 export class TodoListItemComponent {
     editing: boolean = false;
     newDescription: string;
+
+    @ViewChildren('editInput') editInput;
 
     private _item: TodoListItem;
 
@@ -26,6 +28,9 @@ export class TodoListItemComponent {
 
     edit() {
         this.editing = true;
+        setTimeout(() => {
+            this.editInput.first.nativeElement.focus();
+        });
     }
 
     async endEdit() {
