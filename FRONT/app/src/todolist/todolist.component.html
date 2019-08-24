@@ -1,7 +1,9 @@
 <h2>My todo list</h2>
 <div class="todo-list">
-    <ul *ngFor="let item of items">
-        <li>{{ item.description }}</li>
+    <ul>
+        <li *ngFor="let item of items">
+            <todolist-item [item]="item"></todolist-item>
+        </li>
     </ul>
 </div>
 <new-todolist-item (created)="reload()"></new-todolist-item>

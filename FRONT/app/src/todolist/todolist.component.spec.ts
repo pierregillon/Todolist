@@ -2,8 +2,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TodoListComponent } from './todolist.component';
 import { By } from '@angular/platform-browser';
-import { DisplayTodoListItemsComponent } from './display-todolist-items.component';
 import { HttpClient } from '@angular/common/http';
+import { TodoListItemComponent } from './todolist-item.component';
 
 let httpClientSpy: { get: jasmine.Spy };
 
@@ -16,7 +16,7 @@ describe('TodoListComponent', () => {
       ],
       declarations: [
         TodoListComponent,
-        DisplayTodoListItemsComponent
+        TodoListItemComponent
       ],
       providers: [
         { provide: HttpClient, use: httpClientSpy }

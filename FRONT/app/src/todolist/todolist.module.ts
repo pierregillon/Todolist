@@ -5,6 +5,7 @@ import { TodoListComponent } from './todolist.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NewTodoListItemComponent } from './new-todolist-item.component';
+import { TodoListItemComponent } from './todolist-item.component';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { NewTodoListItemComponent } from './new-todolist-item.component';
     ],
     declarations: [
         TodoListComponent,
-        NewTodoListItemComponent
+        NewTodoListItemComponent,
+        TodoListItemComponent
     ],
     providers: [],
 })
