@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoListItem, TodoListRepository } from './todolist-repository';
 
 @Component({
     selector: 'todolist',
-    templateUrl: 'todolist.component.html'
+    templateUrl: 'todolist.component.html',
+    providers: [ TodoListRepository ]
 })
 
 export class TodoListComponent implements OnInit {
-    constructor() { }
+    items:TodoListItem[]
 
-    ngOnInit() { }
+    constructor(private repository: TodoListRepository) { }
+
+    async ngOnInit() {
+        await this.reload();
+    }
+
+    async reload() {
+        this.items = await this.repository.getAll();
+    }
 }
