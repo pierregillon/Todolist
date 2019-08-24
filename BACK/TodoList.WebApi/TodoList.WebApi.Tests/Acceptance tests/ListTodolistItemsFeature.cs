@@ -1,8 +1,10 @@
+using System.Linq;
 using System.Threading.Tasks;
 using CQRSlite.Commands;
 using CQRSlite.Queries;
 using StructureMap;
 using TodoList.WebApi.Domain.AddThing;
+using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
 using TodoList.WebApi.Infrastructure;
 using TodoList.WebApi.Tests.Utils;
@@ -36,6 +38,23 @@ namespace TodoList.WebApi.Tests.Acceptance_tests
             var results = await _queryProcessor.Query(new ListTodoItemsQuery());
 
             Assert.Equal(2, results.Count);
+            Assert.Equal("Update my resume", results.ElementAt(0).Description);
+            Assert.Equal("Go to watch the last Marvel movie", results.ElementAt(1).Description);
+        }
+
+        [Fact]
+        public async Task get_up_to_date_things()
+        {
+            var createCommand = new AddThingToDo("Update my resume");
+            await _commandSender.Send(createCommand);
+            await _commandSender.Send(new EditThingToDo(createCommand.Id, "Update my CV"));
+
+            await Task.Delay(200); // Eventually consistency
+
+            var results = await _queryProcessor.Query(new ListTodoItemsQuery());
+
+            Assert.Equal(1, results.Count);
+            Assert.Equal("Update my CV", results.ElementAt(0).Description);
         }
     }
 }

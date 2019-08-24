@@ -13,9 +13,9 @@ namespace TodoList.WebApi.Domain.AddThing
             _repository = repository;
         }
 
-        public async Task Handle(AddThingToDo message)
+        public async Task Handle(AddThingToDo command)
         {
-            var thing = new ThingToDo(message.Description);
+            var thing = new ThingToDo(command.Id, command.Description);
             await _repository.Save(thing);
         }
     }

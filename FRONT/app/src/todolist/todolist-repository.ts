@@ -9,6 +9,10 @@ export class TodoListRepository {
         return this.http.post('https://localhost:44346/api/todolist', { description: value }).toPromise();
     }
 
+    edit(id: string, newDescription: string) {
+        return this.http.put('https://localhost:44346/api/todolist', { id: id, newDescription: newDescription }).toPromise();
+    }
+
     getAll() : Promise<TodoListItem[]> {
         return this.http.get<TodoListItem[]>('https://localhost:44346/api/todolist').toPromise();
     }

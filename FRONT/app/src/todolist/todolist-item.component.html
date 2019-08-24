@@ -1,1 +1,2 @@
-<span>{{ item.description }}</span>
+<span *ngIf="editing == false" (dblclick)="edit()">{{ item.description }}</span>
+<input *ngIf="editing == true" [(ngModel)]="newDescription" (keyup.enter)="endEdit()" (keyup.escape)="cancelEdit()" (focusout)="cancelEdit()"/>

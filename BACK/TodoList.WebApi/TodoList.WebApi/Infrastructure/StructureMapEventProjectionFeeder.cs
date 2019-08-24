@@ -23,7 +23,7 @@ namespace TodoList.WebApi.Infrastructure
             var listeners = _container.GetAllInstances(listenerType);
 
             foreach (var handler in listeners) {
-                var onMethod = handler.GetType().GetMethod("Handle");
+                var onMethod = handler.GetType().GetMethods().First(x => x.Name == "Handle" && x.GetParameters().First().ParameterType == @event.GetType());
                 await (Task) onMethod.Invoke(handler, new object[] {@event});
             }
 

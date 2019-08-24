@@ -4,6 +4,7 @@ using CQRSlite.Commands;
 using CQRSlite.Queries;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.WebApi.Domain.AddThing;
+using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
 
 namespace TodoList.WebApi.Controllers
@@ -29,6 +30,12 @@ namespace TodoList.WebApi.Controllers
 
         [HttpPost]
         public async Task Post([FromBody]AddThingToDo command)
+        {
+            await _commandSender.Send(command);
+        }
+
+        [HttpPut]
+        public async Task Post([FromBody]EditThingToDo command)
         {
             await _commandSender.Send(command);
         }

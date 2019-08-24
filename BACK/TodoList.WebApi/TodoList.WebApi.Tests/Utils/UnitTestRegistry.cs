@@ -4,6 +4,7 @@ using CQRSlite.Events;
 using CQRSlite.Queries;
 using StructureMap;
 using TodoList.WebApi.Domain.AddThing;
+using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
 using TodoList.WebApi.Infrastructure;
 
@@ -16,7 +17,9 @@ namespace TodoList.WebApi.Tests.Utils
             // Scans not working in unit tests :( ! Do by hand
             For<IQueryHandler<ListTodoItemsQuery, IReadOnlyCollection<TodoListItem>>>().Use<ListItemsQueryHandler>();
             For<ICommandHandler<AddThingToDo>>().Use<AddThingToDoHandler>();
+            For<ICommandHandler<EditThingToDo>>().Use<EditThingToDoHandler>();
             For<IEventHandler<ThingToDoAdded>>().Use<ReadDatabaseFeeder>();
+            For<IEventHandler<ThingToDoEdited>>().Use<ReadDatabaseFeeder>();
         }
     }
 }
