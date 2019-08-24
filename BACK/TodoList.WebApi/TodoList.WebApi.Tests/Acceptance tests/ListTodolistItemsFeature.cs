@@ -34,7 +34,7 @@ namespace TodoList.WebApi.Tests.Acceptance_tests
             await _commandSender.Send(new AddThingToDo("Update my resume"));
             await _commandSender.Send(new AddThingToDo("Go to watch the last Marvel movie"));
 
-            await Task.Delay(200); // Eventually consistency
+            await Task.Delay(300); // Eventually consistency
 
             var results = await _queryProcessor.Query(new ListTodoItemsQuery());
 

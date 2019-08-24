@@ -28,16 +28,20 @@ export class TodoListItemComponent {
     constructor(private repository: TodoListRepository) { }
 
     edit() {
-        this.editing = true;
-        if (this.editInput) {
-            setTimeout(() => {
-                this.editInput.first.nativeElement.focus();
-            });
+        if(this.item.isDone == false) {
+            this.editing = true;
+            if (this.editInput) {
+                setTimeout(() => {
+                    this.editInput.first.nativeElement.focus();
+                });
+            }
         }
     }
 
     async endEdit() {
-        await this.repository.edit(this.item.id, this.newDescription);
+        await this.repository.edit(this.item.id, this.newDescription).catch(error => {
+            console.log(error);
+        })
         this.item.description = this.newDescription;
         this.editing = false;
     }

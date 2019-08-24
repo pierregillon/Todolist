@@ -13,8 +13,8 @@ describe('TodoListRepository', () => {
     it('query api to get todo list items', async () => {
         // Arrange
         const expectedHeroes: TodoListItem[] = [
-            { id: "1", description: 'A' },
-            { id: "2", description: 'B' }
+            { id: "1", description: 'A', isDone: false },
+            { id: "2", description: 'B', isDone: false }
         ];
         httpClientSpy.get.and.returnValue(asyncData(expectedHeroes));
         

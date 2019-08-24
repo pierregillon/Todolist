@@ -37,7 +37,7 @@ describe('TodoListItemComponent (e2e)', () => {
 
     it('display readonly description', () => {
         // Act
-        fixture.componentInstance.item = { id: "123", description: "call my dad" };
+        fixture.componentInstance.item = { id: "123", description: "call my dad", isDone: false };
         fixture.detectChanges();
 
         // Assert
@@ -47,7 +47,7 @@ describe('TodoListItemComponent (e2e)', () => {
 
     it('set description editable on click', () => {
         // Arrange
-        fixture.componentInstance.item = { id: "123", description: "call my dad" };
+        fixture.componentInstance.item = { id: "123", description: "call my dad", isDone: false };
         fixture.detectChanges();
 
         // Act
@@ -62,7 +62,7 @@ describe('TodoListItemComponent (e2e)', () => {
 
     it('cancel description edition on escape', () => {
         // Arrange
-        fixture.componentInstance.item = { id: "123", description: "call my dad" };
+        fixture.componentInstance.item = { id: "123", description: "call my dad", isDone: false };
         fixture.componentInstance.edit();
         fixture.detectChanges();
 

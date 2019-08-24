@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CQRSlite.Commands;
 using CQRSlite.Queries;
 using Microsoft.AspNetCore.Mvc;
+using TodoList.WebApi.Domain;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
@@ -37,13 +38,21 @@ namespace TodoList.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task Post([FromBody]EditThingToDo command)
+        public async Task<ActionResult> Put([FromBody]EditThingToDo command)
         {
-            await _commandSender.Send(command);
+            try
+            {
+                await _commandSender.Send(command);
+                return Ok();
+            }
+            catch (CannotEditThingDone ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
-        public async Task Post(Guid id)
+        public async Task Delete(Guid id)
         {
             await _commandSender.Send(new RemoveThingToDo(id));
         }

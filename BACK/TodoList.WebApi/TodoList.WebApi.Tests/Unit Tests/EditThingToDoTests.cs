@@ -8,6 +8,7 @@ using TodoList.WebApi.Domain;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
+using TodoList.WebApi.Domain.RemoveThing;
 using TodoList.WebApi.Infrastructure;
 using TodoList.WebApi.Tests.Utils;
 using Xunit;
@@ -55,6 +56,22 @@ namespace TodoList.WebApi.Tests.Unit_Tests
                 x.Id == id &&
                 x.NewDescription == "Call mum to check things ok !"
             ));
+        }
+
+        [Fact]
+        public async Task cannot_edit_things_done()
+        {
+            // Arrange
+            var id = Guid.NewGuid();
+            await _eventStore.Save(new IEvent[] {
+                new ThingToDoAdded(id, "Call dad to check things are ok !"),
+                new ThingToDoDone(id)
+            });
+
+            // Assert
+            await Assert.ThrowsAsync<CannotEditThingDone>(async () =>
+                await _commandSender.Send(new EditThingToDo(id, "Call mum to check things are ok !")));
+
         }
     }
 }

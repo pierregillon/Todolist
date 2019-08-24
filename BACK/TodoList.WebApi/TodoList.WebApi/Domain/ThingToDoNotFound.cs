@@ -5,6 +5,6 @@ namespace TodoList.WebApi.Domain
 {
     public class ThingToDoNotFound : Exception
     {
-        public ThingToDoNotFound(Guid id, AggregateNotFoundException innerException) : base($"The thing to do with id {id} was not found.", innerException) { }
+        public ThingToDoNotFound(Guid id, Exception innerException) : base($"The thing to do with id {id} was not found.", innerException) { }
     }
 }

@@ -8,6 +8,7 @@ namespace TodoList.WebApi.Domain {
     public class ThingToDo : AggregateRoot
     {
         private string _description;
+        private bool _isDone;
 
         private ThingToDo() { }
         public ThingToDo(Guid id, string description)
@@ -17,6 +18,9 @@ namespace TodoList.WebApi.Domain {
 
         public void Edit(string newDescription)
         {
+            if (_isDone) {
+                throw new CannotEditThingDone(Id);
+            }
             ApplyChange(new ThingToDoEdited(Id, newDescription));
         }
 
@@ -38,7 +42,7 @@ namespace TodoList.WebApi.Domain {
 
         public void Apply(ThingToDoDone @event)
         {
-            // nothing to do yet
+            _isDone = true;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace TodoList.WebApi.Infrastructure.Write
 
                 for (var i = 0; i < group.Count(); i++) {
                     var @event = group.ElementAt(i);
-                    @event.Version = _events[group.Key].Count + (i + 1);
+                    @event.Version = _events[group.Key].Count + 1;
                     _events[group.Key].Add(@event);
                 }
             }
