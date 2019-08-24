@@ -1,2 +1,7 @@
 <span *ngIf="editing == false" (click)="edit()">{{ item.description }}</span>
-<input #editInput *ngIf="editing == true" [(ngModel)]="newDescription" (keyup.enter)="endEdit()" (keyup.escape)="cancelEdit()" (focusout)="cancelEdit()"/>
+<input #editInput 
+       *ngIf="editing == true" 
+       [(ngModel)]="newDescription" 
+       (keyup.enter)="endEdit()" 
+       (keyup.escape)="cancelEdit()" 
+       (focusout)="cancelEdit()"/>
