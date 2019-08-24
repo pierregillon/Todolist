@@ -1,4 +1,7 @@
-<span *ngIf="editing == false" (click)="edit()">{{ item.description }}</span>
+<div class="todo-item">
+    <span *ngIf="editing == false" (click)="edit()" [ngClass]="{done: item.isDone}">{{ item.description }}</span>
+    <button (click)="done()">done</button>
+</div>
 <input #editInput 
        *ngIf="editing == true" 
        [(ngModel)]="newDescription" 

@@ -2,6 +2,7 @@
 using CQRSlite.Domain;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
+using TodoList.WebApi.Domain.RemoveThing;
 
 namespace TodoList.WebApi.Domain {
     public class ThingToDo : AggregateRoot
@@ -19,6 +20,11 @@ namespace TodoList.WebApi.Domain {
             ApplyChange(new ThingToDoEdited(Id, newDescription));
         }
 
+        public void MarkAsDone()
+        {
+            ApplyChange(new ThingToDoDone(Id));
+        }
+
         public void Apply(ThingToDoAdded @event)
         {
             Id = @event.Id;
@@ -30,5 +36,9 @@ namespace TodoList.WebApi.Domain {
             _description = @event.NewDescription;
         }
 
+        public void Apply(ThingToDoDone @event)
+        {
+            // nothing to do yet
+        }
     }
 }

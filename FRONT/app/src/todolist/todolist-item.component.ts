@@ -4,6 +4,7 @@ import { TodoListItem, TodoListRepository } from './todolist-repository';
 @Component({
     selector: 'todolist-item',
     templateUrl: 'todolist-item.component.html',
+    styleUrls: [ './todolist-item.component.less' ],
     providers: [ TodoListRepository ]
 })
 
@@ -44,5 +45,10 @@ export class TodoListItemComponent {
     cancelEdit() {
         this.newDescription = this.item.description;
         this.editing = false;
+    }
+
+    async done() {
+        await this.repository.remove(this.item.id);
+        this.item.isDone = true;
     }
 }

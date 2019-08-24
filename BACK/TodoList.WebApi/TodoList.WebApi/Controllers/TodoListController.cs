@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CQRSlite.Commands;
 using CQRSlite.Queries;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
+using TodoList.WebApi.Domain.RemoveThing;
 
 namespace TodoList.WebApi.Controllers
 {
@@ -38,6 +40,12 @@ namespace TodoList.WebApi.Controllers
         public async Task Post([FromBody]EditThingToDo command)
         {
             await _commandSender.Send(command);
+        }
+
+        [HttpDelete]
+        public async Task Post(Guid id)
+        {
+            await _commandSender.Send(new RemoveThingToDo(id));
         }
     }
 }

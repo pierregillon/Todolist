@@ -13,6 +13,10 @@ export class TodoListRepository {
         return this.http.put('https://localhost:44346/api/todolist', { id: id, newDescription: newDescription }).toPromise();
     }
 
+    remove(id: string) {
+        return this.http.delete('https://localhost:44346/api/todolist/', { params: {id: id} }).toPromise();
+    }
+
     getAll() : Promise<TodoListItem[]> {
         return this.http.get<TodoListItem[]>('https://localhost:44346/api/todolist').toPromise();
     }
@@ -21,4 +25,5 @@ export class TodoListRepository {
 export class TodoListItem {
     id: string;
     description: string;
+    isDone: boolean;
 }

@@ -6,7 +6,7 @@ using StructureMap;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
-using TodoList.WebApi.Infrastructure;
+using TodoList.WebApi.Domain.RemoveThing;
 using TodoList.WebApi.Infrastructure.Read;
 
 namespace TodoList.WebApi.Tests.Utils
@@ -18,9 +18,11 @@ namespace TodoList.WebApi.Tests.Utils
             // Scans not working in unit tests :( ! Do by hand
             For<IQueryHandler<ListTodoItemsQuery, IReadOnlyCollection<TodoListItem>>>().Use<ListItemsQueryHandler>();
             For<ICommandHandler<AddThingToDo>>().Use<AddThingToDoHandler>();
+            For<ICommandHandler<RemoveThingToDo>>().Use<RemoveThingToDoHandler>();
             For<ICommandHandler<EditThingToDo>>().Use<EditThingToDoHandler>();
             For<IEventHandler<ThingToDoAdded>>().Use<ReadDatabaseFeeder>();
             For<IEventHandler<ThingToDoEdited>>().Use<ReadDatabaseFeeder>();
+            For<IEventHandler<ThingToDoDone>>().Use<ReadDatabaseFeeder>();
         }
     }
 }

@@ -6,6 +6,7 @@ using StructureMap;
 using TodoList.WebApi.Domain.AddThing;
 using TodoList.WebApi.Domain.EditThing;
 using TodoList.WebApi.Domain.ListItems;
+using TodoList.WebApi.Domain.RemoveThing;
 using TodoList.WebApi.Infrastructure;
 using TodoList.WebApi.Tests.Utils;
 using Xunit;
@@ -55,6 +56,23 @@ namespace TodoList.WebApi.Tests.Acceptance_tests
 
             Assert.Equal(1, results.Count);
             Assert.Equal("Update my CV", results.ElementAt(0).Description);
+            Assert.False(results.ElementAt(0).IsDone);
+        }
+
+        [Fact]
+        public async Task get_things_done()
+        {
+            var createCommand = new AddThingToDo("Update my resume");
+            await _commandSender.Send(createCommand);
+            await _commandSender.Send(new RemoveThingToDo(createCommand.Id));
+
+            await Task.Delay(200); // Eventually consistency
+
+            var results = await _queryProcessor.Query(new ListTodoItemsQuery());
+
+            Assert.Equal(1, results.Count);
+            Assert.Equal("Update my resume", results.ElementAt(0).Description);
+            Assert.True(results.ElementAt(0).IsDone);
         }
     }
 }

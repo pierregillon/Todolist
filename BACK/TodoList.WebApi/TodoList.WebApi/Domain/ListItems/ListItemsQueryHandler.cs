@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CQRSlite.Queries;
-using TodoList.WebApi.Infrastructure;
 using TodoList.WebApi.Infrastructure.Read;
 
 namespace TodoList.WebApi.Domain.ListItems {
@@ -19,7 +18,7 @@ namespace TodoList.WebApi.Domain.ListItems {
         {
             var query = 
                 from item in _database.Table<TodoListItemTable>()
-                select new TodoListItem(item.Id, item.Description);
+                select new TodoListItem(item.Id, item.Description, item.IsDone);
 
             return await Task.Run(() => query.ToList());
         }
