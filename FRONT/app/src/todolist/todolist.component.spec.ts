@@ -4,6 +4,8 @@ import { TodoListComponent } from './todolist.component';
 import { By } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { TodoListItemComponent } from './todolist-item.component';
+import { NewTodoListItemComponent } from './new-todolist-item.component';
+import { FormsModule } from '@angular/forms';
 
 let httpClientSpy: { get: jasmine.Spy };
 
@@ -12,11 +14,13 @@ describe('TodoListComponent', () => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        FormsModule
       ],
       declarations: [
         TodoListComponent,
-        TodoListItemComponent
+        TodoListItemComponent,
+        NewTodoListItemComponent
       ],
       providers: [
         { provide: HttpClient, use: httpClientSpy }

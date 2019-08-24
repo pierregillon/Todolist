@@ -13,14 +13,14 @@ describe('TodoListRepository', () => {
     it('query api to get todo list items', async () => {
         // Arrange
         const expectedHeroes: TodoListItem[] = [
-            { id: 1, name: 'A' },
-            { id: 2, name: 'B' }
+            { id: "1", description: 'A' },
+            { id: "2", description: 'B' }
         ];
         httpClientSpy.get.and.returnValue(asyncData(expectedHeroes));
         
         // Act
         let results = await repository.getAll();
-
+        
         // Assert
         expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
         expect(results.length).toBe(2);

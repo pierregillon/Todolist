@@ -28,9 +28,11 @@ export class TodoListItemComponent {
 
     edit() {
         this.editing = true;
-        setTimeout(() => {
-            this.editInput.first.nativeElement.focus();
-        });
+        if (this.editInput) {
+            setTimeout(() => {
+                this.editInput.first.nativeElement.focus();
+            });
+        }
     }
 
     async endEdit() {
